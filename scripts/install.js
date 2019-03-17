@@ -5,10 +5,10 @@ function install(ev) {
   // define the manifest URL
   // install the app
   var installLocFind = navigator.mozApps.install(manifest_url);
-  installLocFind.onsuccess = function(data) {
+  installLocFind.onsuccess = function (data) {
     // App is installed, do something 
   };
-  installLocFind.onerror = function() {
+  installLocFind.onerror = function () {
     // App wasn't installed, info is in
     // installapp.error.name
     alert(installLocFind.error.name);
@@ -20,8 +20,8 @@ var button = document.getElementById('install-btn');
 
 var installCheck = navigator.mozApps.checkInstalled(manifest_url);
 
-installCheck.onsuccess = function() {
-  if(installCheck.result) {
+installCheck.onsuccess = function () {
+  if (installCheck.result) {
     button.style.display = "none";
   } else {
     button.addEventListener('click', install, false);

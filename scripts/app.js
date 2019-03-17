@@ -10,7 +10,7 @@ var mainSection = document.querySelector('.main-controls');
 
 stop.disabled = true;
 
-var SpeakerID = prompt('Please write your ID in the form of: age_m/f_name\nWhere age is your age, m/f is male or female, name is your name. \nExample: 50_m_karim','50_m_karim');
+var SpeakerID = prompt('Please write your ID in the form of: age_m/f_name\nWhere age is your age, m/f is male or female, name is your name. \nExample: 50_m_karim', '50_m_karim');
 
 // visualiser setup - create web audio api context and canvas
 
@@ -26,12 +26,12 @@ if (navigator.mediaDevices.getUserMedia) {
   var constraints = { audio: true };
   var chunks = [];
 
-  var onSuccess = function(stream) {
+  var onSuccess = function (stream) {
     var mediaRecorder = new MediaRecorder(stream);
 
     visualize(stream);
 
-    record.onclick = function() {
+    record.onclick = function () {
       mediaRecorder.start();
       console.log(mediaRecorder.state);
       console.log("recorder started");
@@ -41,7 +41,7 @@ if (navigator.mediaDevices.getUserMedia) {
       record.disabled = true;
     }
 
-    stop.onclick = function() {
+    stop.onclick = function () {
       mediaRecorder.stop();
       console.log(mediaRecorder.state);
       console.log("recorder stopped");
@@ -53,23 +53,23 @@ if (navigator.mediaDevices.getUserMedia) {
       record.disabled = false;
     }
 
-   
-    mediaRecorder.onstop = function(e) {
+
+    mediaRecorder.onstop = function (e) {
       console.log("data available after MediaRecorder.stop() called.");
 
-      var clipName = prompt('Enter a name for your sound clip?','My unnamed clip');
+      var clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
       console.log(clipName);
       var clipContainer = document.createElement('article');
       var clipLabel = document.createElement('p');
       var audio = document.createElement('audio');
       var deleteButton = document.createElement('button');
-     
+
       clipContainer.classList.add('clip');
       audio.setAttribute('controls', '');
       deleteButton.textContent = 'Delete';
       deleteButton.className = 'delete';
 
-      if(clipName === null) {
+      if (clipName === null) {
         clipLabel.textContent = 'My unnamed clip';
       } else {
         clipLabel.textContent = clipName;
@@ -79,27 +79,27 @@ if (navigator.mediaDevices.getUserMedia) {
       clipContainer.appendChild(clipLabel);
       clipContainer.appendChild(deleteButton);
       soundClips.appendChild(clipContainer);
-      
+
 
       audio.controls = true;
-      var blob = new Blob(chunks, { 'type' : 'audio/wav; codecs=opus' , 'name': clipName});
+      var blob = new Blob(chunks, { 'type': 'audio/wav; codecs=opus', 'name': clipName });
       chunks = [];
       //blob.name = clipName;
-     
+
       var audioURL = window.URL.createObjectURL(blob);
       audio.src = audioURL;
       console.log("recorder stopped");
       //saveAs(blob, clipName);
-      deleteButton.onclick = function(e) {
+      deleteButton.onclick = function (e) {
         evtTgt = e.target;
         evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
       }
       //HEREEE
-      
-      clipLabel.onclick = function() {
+
+      clipLabel.onclick = function () {
         var existingName = clipLabel.textContent;
         var newClipName = prompt('Enter a new name for your sound clip?');
-        if(newClipName === null) {
+        if (newClipName === null) {
           clipLabel.textContent = existingName;
         } else {
           clipLabel.textContent = newClipName;
@@ -107,22 +107,22 @@ if (navigator.mediaDevices.getUserMedia) {
       }
       download.onclick = function () {
         saveAs(blob, clipName);
-    };
+      };
     }
-    
-    mediaRecorder.ondataavailable = function(e) {
+
+    mediaRecorder.ondataavailable = function (e) {
       chunks.push(e.data);
     }
   }
 
-  var onError = function(err) {
+  var onError = function (err) {
     console.log('The following error occured: ' + err);
   }
 
   navigator.mediaDevices.getUserMedia(constraints).then(onSuccess, onError);
 
 } else {
-   console.log('getUserMedia not supported on your browser!');
+  console.log('getUserMedia not supported on your browser!');
 }
 
 function visualize(stream) {
@@ -158,12 +158,12 @@ function visualize(stream) {
     var x = 0;
 
 
-    for(var i = 0; i < bufferLength; i++) {
- 
-      var v = dataArray[i] / 128.0;
-      var y = v * HEIGHT/2;
+    for (var i = 0; i < bufferLength; i++) {
 
-      if(i === 0) {
+      var v = dataArray[i] / 128.0;
+      var y = v * HEIGHT / 2;
+
+      if (i === 0) {
         canvasCtx.moveTo(x, y);
       } else {
         canvasCtx.lineTo(x, y);
@@ -172,13 +172,13 @@ function visualize(stream) {
       x += sliceWidth;
     }
 
-    canvasCtx.lineTo(canvas.width, canvas.height/2);
+    canvasCtx.lineTo(canvas.width, canvas.height / 2);
     canvasCtx.stroke();
 
   }
 }
 
-window.onresize = function() {
+window.onresize = function () {
   canvas.width = mainSection.offsetWidth;
 }
 

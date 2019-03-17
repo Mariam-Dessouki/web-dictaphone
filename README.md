@@ -1,10 +1,13 @@
-# How to Use
-How to use:
+# Prerequisites
+install [FileSaver](https://github.com/eligrey/FileSaver.js/).
+
+
+# How to Use:
+
 ```
 1. Clone repo
-2. install [FileSaver](https://github.com/eligrey/FileSaver.js/).
-3. include the location of the FileSaver.js at the end of the index.html file
-4. open index.html in your Web browser to use the app
+2. include the location of the FileSaver.js at the end of the index.html file
+3. open index.html in your Web browser to use the app
 ```
 
 

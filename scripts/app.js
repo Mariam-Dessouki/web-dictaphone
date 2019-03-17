@@ -10,6 +10,8 @@ var mainSection = document.querySelector('.main-controls');
 
 stop.disabled = true;
 
+var SpeakerID = prompt('Please write your ID in the form of: age_m/f_name\nWhere age is your age, m/f is male or female, name is your name. \nExample: 50_m_karim','50_m_karim');
+
 // visualiser setup - create web audio api context and canvas
 
 var audioCtx = new (window.AudioContext || webkitAudioContext)();

@@ -1,4 +1,20 @@
+# Prerequisites
+install [FileSaver](https://github.com/eligrey/FileSaver.js/).
+
+
+# How to Use:
+
+```
+1. Clone repo
+2. open index.html in your Web browser to use the app
+```
+
+
+
+
 A sample MDN app that uses getUserMedia and MediaRecorder API for recording audio snippets, and The Web Audio API for visualizations.
+
+You can [play with the live demo](https://mdn.github.io/web-dictaphone/).
 
 Documentation:
 
@@ -6,3 +22,5 @@ Documentation:
 * [MediaRecorder API landing page](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API): includes API reference and more
 
 Thanks to [Sole](http://soledadpenades.com/) for the oscilloscope code.
+
+

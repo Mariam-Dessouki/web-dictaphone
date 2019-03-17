@@ -14,8 +14,8 @@
   ],
   "license": "MIT",
   "ignore": [
-      "*",
-      "!dist/*",
-      "!LICENSE.md"
+    "*",
+    "!dist/*",
+    "!LICENSE.md"
   ]
 }

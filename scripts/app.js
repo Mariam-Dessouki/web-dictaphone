@@ -1,7 +1,7 @@
 // set up basic variables for app
-
 var record = document.querySelector('.record');
 var stop = document.querySelector('.stop');
+var download = document.querySelector('.download');
 var soundClips = document.querySelector('.sound-clips');
 var canvas = document.querySelector('.visualizer');
 var mainSection = document.querySelector('.main-controls');
@@ -16,6 +16,7 @@ var audioCtx = new (window.AudioContext || webkitAudioContext)();
 var canvasCtx = canvas.getContext("2d");
 
 //main block for doing the audio recording
+
 
 if (navigator.mediaDevices.getUserMedia) {
   console.log('getUserMedia supported.');
@@ -50,6 +51,7 @@ if (navigator.mediaDevices.getUserMedia) {
       record.disabled = false;
     }
 
+   
     mediaRecorder.onstop = function(e) {
       console.log("data available after MediaRecorder.stop() called.");
 
@@ -75,19 +77,23 @@ if (navigator.mediaDevices.getUserMedia) {
       clipContainer.appendChild(clipLabel);
       clipContainer.appendChild(deleteButton);
       soundClips.appendChild(clipContainer);
+      
 
       audio.controls = true;
-      var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+      var blob = new Blob(chunks, { 'type' : 'audio/wav; codecs=opus' , 'name': clipName});
       chunks = [];
+      //blob.name = clipName;
+     
       var audioURL = window.URL.createObjectURL(blob);
       audio.src = audioURL;
       console.log("recorder stopped");
-
+      //saveAs(blob, clipName);
       deleteButton.onclick = function(e) {
         evtTgt = e.target;
         evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
       }
-
+      //HEREEE
+      
       clipLabel.onclick = function() {
         var existingName = clipLabel.textContent;
         var newClipName = prompt('Enter a new name for your sound clip?');
@@ -97,8 +103,11 @@ if (navigator.mediaDevices.getUserMedia) {
           clipLabel.textContent = newClipName;
         }
       }
+      download.onclick = function () {
+        saveAs(blob, clipName);
+    };
     }
-
+    
     mediaRecorder.ondataavailable = function(e) {
       chunks.push(e.data);
     }

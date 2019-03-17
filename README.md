@@ -2,7 +2,7 @@
 How to use:
 ```
 1. Clone repo
-2. install [FileSaver](https://github.com/eligrey/FileSaver.js/)
+2. install [FileSaver](https://github.com/eligrey/FileSaver.js/).
 3. include the location of the FileSaver.js at the end of the index.html file
 4. open index.html in your Web browser to use the app
 ```

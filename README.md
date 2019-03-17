@@ -6,8 +6,7 @@ install [FileSaver](https://github.com/eligrey/FileSaver.js/).
 
 ```
 1. Clone repo
-2. include the location of the FileSaver.js at the end of the index.html file
-3. open index.html in your Web browser to use the app
+2. open index.html in your Web browser to use the app
 ```
 
 

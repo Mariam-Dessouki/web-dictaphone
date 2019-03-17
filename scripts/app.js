@@ -3,6 +3,7 @@ var record = document.querySelector('.record');
 var stop = document.querySelector('.stop');
 var download = document.querySelector('.download');
 var soundClips = document.querySelector('.sound-clips');
+var senClass = document.querySelector('.sen');
 var canvas = document.querySelector('.visualizer');
 var mainSection = document.querySelector('.main-controls');
 
@@ -25,22 +26,29 @@ function shuffle(array) {
   return array;
 }
 
+function move(progress) {
+  var elem = document.getElementById("myBar");
+  var width = 5 * progress;
+  elem.style.width = width + '%';
+  //var id = setInterval(frame, 10);
+}
+
 
 // disable stop button while not recording
 
 stop.disabled = true;
 var SpeakerID = prompt('Please write your ID in the form of: age_m/f_name\nWhere age is your age, m/f is male or female, name is your name. \nExample: 50_m_karim', '50_m_karim');
-var sentences = "ByFomHavRuqGzfTiUPqrzQSIQN$xOnJvMIoMWanTsKGGeZRcKrbWzWluyY$ZUHOQyTGvEayYihtwWDHLSvETZVEvBZlhZOuLXUplXwfRSaC$DwkHnFjuCvCQIcydRqkvRW$eJkAlRcrpBXJvDaQeAZhqkqIiUREdwCWauavM$AgCMJDEnngNrXuHXkcROfjkOhZeQWgACEuiWVtvbUKu$sxWsxZnAVkNjkqlHGjdFHrFnqOWcRkKhLntBdqhgGng$XnILxkLRbPZsIREFZxgluwiwIfcZfueSHvECnJzQXpmjjmUjBn$hrGVeijkWPqWJvQOUhluFqtDZkLIImTsack$WmqfcZZJglxVLUYlvsLBTRjhTAKUzlNRzuWQvNVWTkjDGydau$kbuwqUirzPooswWGZuGoaLDCkQouCCUKrFAPyMKGj$fVAhWIdtYjlMTwWNYfldYQpTwhlRFnnjgvtnpDF$WNgfGgmMdsDQVrTbSRtsysJzZPMvILdGuOixwWtJadOQWagnE$rLCWQdBAVJyDxlNkcFuWdFGJSpw$YfiCGOXYIAuxJgvdXkEQjQI$ifLeaMuytCCsZWNGdMNWPJEPZVqYXDiZzfbnOqkP$DeBMhklUEbIhDqXbjRrKWRBKuOdAMFXG$SPdxGWjFOVMNbRVaqeEqkoMivUQ$xpzBCmSkBRYFhrHvfmoiKvuFrpAqVMm$ZQmWoZnFChJXOVoBHFkeUbqPJvwUIrIXDodhBj$kNmWEITMbrvHlmjSlaEHHMCTjBJAkGktipupIjq$TbAcqZFPypcwaWgeSQTvSwdLPCWRqIYcgouFHQtuN$iGDCijAVyxOkKsQtEsiLTfPJPJC$DaMdVbBppKpvlgVRhOCagSQmmCQFcDnyowwMrzVHqYQKsTH$vIFlBDEMPsufKVxGgSYyJYyEMdbBOxUSrvkWudBvOqpRmJmwsO$aqOtUzbPZmqlvJPcqKPTQYQRfWHRnOTwdlvz$UviejgiaitEpXhlABdKIxCEmBiROCvFrsnkjFAus$fTJiZstjHLHtHkzsxfDd$nXRzsvxQmbBCVsumxXnGkWemilBUUZAosJwWyFooIFx$ogjghyVgGlVLWkUISYLLHPWJxbGCyFtxZnZnK$bjIKWuMtoDxzGMulkXPKxVuzoovFrjPaqrTztTOIC$LzEAxZnpZHAGZyqMYwZBChRjgfYKkUVYhBFpNqUWvak$DEfzjhhbHJhJhlutAdfABaPlgTcaRaUwKzKewry$RCaHYagFlVanzGNWaBjnfklhVjFHSIEeQFxQagMayVKaD$oVhGmeQYkaiddThbiKdLliPSHhNhrhwLnMUTqRE$RVVTRPwjawNjkWCwViffiWxnVW$zvlqbNEKPgmXCzCbDhKbddrWeTlzyELcuDhuqdQGOuuNGCwJFv$gpaRLwWrMNeJqBYKaaHLAhpd$DJfRtawlXkvXvckSsDMf$EgIYfMjzxhkyAgjVySLWhSbHAsAlhSknZWjRAsLcGA$ZrpNOyEUgkAgrjdHAgztKBcdWW$nywafuxioLIyPEjbaNDtEOQOVZKJnqOphdAXjucgo$RxRZiJsrpAChEaTibWDeHyseQowgIrwJyOLpaQiQllJ$TOmHYittIRpatyHIoKZWKEpcy$XLCApwfGmCVyyEzFLeMAvHhXGLCjyIShZpGTnwUVH$gYUuXcGnkoZJKDZVrXxNEjpBjwlcUpVmULsGBQcAKUyxWqz$jbnEhiMsjGrZZewUpkEiFYNqaFIoRBldYRgrgpLHqcKbimQH$OUleiauXdLMoPQYtYOjoEbibETRyS$BQddjREpeeHmCbLfqsWOXKJqMfuwsMiGZUB$inpHNxMzpCapzDbEtwWDlqEUcIxoyL$CyklHvjxqnmcinNrGodTfXHaFjSWlybnepTYppljBgwiL$CmsYDtIQPpDlrKENXqzKHPTEPpkNQMjEeAISWMKtGIJzsRf$IMpgYEWFhpAoezEOuAVLZRKdRFbmNH$UtnXkYAATdtJglIyNdmXetLgNGLCgxx$UTHzfQpEOJnGhJFmZEgzgFhkf$aPcoPQhLqfJbTQOZjInPEuXpNvTLhrlcUTw$cuhgzJnCtLkTfzPimHmQEXsmfgdLSvxrARKbE$EbREcFwtMUMEvDKjivZneXGvxcOLxNHYrIMeqvRufGMOp$uLZnhrlvCGybAiaAsmylXjvHysPnNgnOgUz$LZAIUaVpwEemoCiSdwVVRK$skwgPcYCqtOCeuqLusmvCzdx$qiKjiaMEgjtgntYTqetVtlDtyPDrkuQI$nMCKzexRdsTuORCdiQneKfHjWjiTGNuH$CpvxPPHytYXBQPQHLREJvdPWDZJSYTrWCY$qGDpudhDNGfNZQCfZnwMdfhJZm$BrdyqgyPWBSIfpKzDcGcyxwIOEkiPaanYLgm$ZTpdXOWyASWQsKvzbEvzBLaOUkzBgjlm$eIcOaWhZlJUapTsxegbNFqmgMRDSQFHtjhFmNT$qtqsxyMwJxLxNmmdokcHoFIcOqOmypiiwjCqtcDrjqRvuzY$WSQKDkhGgXaTIPWoIcXZXXaoRDHcZ$oFLAIOToNYfjgPSmLJjd$UswnDgAacuqAvCPlcNmxXiCvrRbMCuUuFMZxy$HRRCABjAEdJbvdweWZCYesQLuwZHoExOhU$cgZwzihykDeySVqbNTwSbmkoZzEhuqboWASiVokWV$CwFXPiWvNUfvjXyBXttNEmUAikqwZ$tpIIlAKufXlprLYAvRKEjTVyArSwhlwtWkfVfQsYhPy$PGEQqGFAxHxmRolGgQrReavxyUImhckwX$AbQTnoYxjUsFVtuOLFFevlbqLqCHxmoixr$DmBozJGBubgskIPvsitdjZDpKIt$TWqRIALvFxlGncEyMWBmybQuZTKj$PJUEgtiDWtxmIIgkYEFSuuBEPxeqgMbBbFdosRKhWliOkWmN$NhmLdtkLVXkcOlDZomuWrCqfustFIzGyhblNMJwFCRmlcpbbKf$uEuCeLEeZkFgaCTMBcCVdFQwSMDuMVnTuIfsJzHUVXYJbb$tSZYKsbUuypXEloDJNrZPXdQnCpzomCYdulMtBaqJykBxjICh$opxeabbeJHjDSzpgzhabmyZLBMIevgsQpyWdqHJHjPsYB$lvZQGCdqnPtBbKebalHqRbVxqzvJzRrOcc$PuMrxwJJERmzDTpQlqYuyRfiDbEfQbTu$MFscKSCdJRVdwLgCabduwAxwCCMVifCrJfZdcYJIqKNFwjhkE$EfUPIbHHutxVMwgBhQuiLyqhUEElsfTKItwXluqLRYPq$woVkCxirKbAzttIaVDWlMBxPBZgVyV$EwiWzHzgBXFWcsuUzBTLOXZVttbToebeaVVtmRJYokSuAq$lyCaGJhUmRPfsduvCrNA$UGdYQyFGTPuKlQJWfSaOLGcORAkNR$cYNxcycDBBTjcFWnWMMsUEtyEXXXwbwPio$CSFEiRclTeSnQlxQBnBYmUdQITrKbyNak$PJRlsLdBofavyRvJmYbkR$gtXEOzLrNxmaIKKKBXymmiNeHosrG$JJBjcCMWpWUEvumcYzhoWvWvgNwTalohgQvsVMFjhPfxFI$BJVjByDKnWOUaFMrhpIhHtIIoXLjtbgYKMW$EkAGQDrsCpaNVYVqhcxYCNwlJMAAisyuQnqrEQvYPuutDUva".split("$");
+var sentences = "0#sJuDgqKkASLYMFYuLikCIuHPFLdweAVEZQ$1#QzCOKHNyQyTrmsMaIDgPmkTpyTmilYQUJYoZCzbHJuANiup$2#zLloznosZolRspBUtFUqhtNdGHKnO$3#hQOVsRwAJmKhTfOKORsZTIjjnkmijfHFNgyItwXOZOPxMM$4#GPcOAjOhnsVWBtBbcGaTiwQ$5#LArTMjDzVsbbHAIzRHqsmgejVFlnpuSccvK$6#EWjhuPPBdmdYCmUxvqUrwK$7#CFBomZhBlvZfXjmOCHjXmlqPrkSNdDgVmkBT$8#CsEmiMjaFWTEZWkGEiIhBmSUWickesjCBd$9#CVEeKaKqHpQTLsXHlSaSQsiLogpQfmTVsykkPrJNNVyCiNB$10#WpMJnRcsRaYpWAIIsccNjVpIMeTTqkNSbeRiVzPdObnBSteEQT$11#gkilbTJorfkXwIXRPQYcGRGPTToAFtySD$12#jRNpHZfoKFrAfongxiPnioZICdfmXYwGbsitEAinQdPiZ$13#UFaVQNakIUidwkRIzRwrmKbgVSUAzxAdU$14#IcEPuCTqcDBefXoAQnnauBhXZRyhMbRRvkHSvNikLCubzKWJI$15#dpMSTXEzBKjRsHQPOctHoWAfHFDHlb$16#hjIvWssczhUyZMrivoInuGXNcZShCDhOJ$17#htTUQQouUffquBoHjanFqGsetsylVflFevJhSDEkYzFW$18#tHYyWDkpDeNbJElubObNCWCGqZcgWMfEqm$19#bXKCURnsDQTalxlulyeAucYEbYdHmkiXFcbq$20#EQtnsaESwTRhNCXfnamjN$21#awUJMTKdDuGhdzxbYMjEIoKrhJUmzFmW$22#hHKVlAlshXMBKzhALXgCodVms$23#xfWewoDuqPCpJYUgVXcaNnyrHsNlGyWuyjtyESKggeB$24#wNhfUjxLQPUsRZCtxuRLwLIAEXYnCoTsMdRo$25#QwNRQWodGRfzIWRiqlxPbkSkqMjmgoUF$26#jKRuszNvrVwyWRIuiEqOZpbefeVJEAS$27#kMyJAmuQZvAxcWJIcoOkkCWQCsxterRVMgsYtYrxxGspbwsFh$28#hQdaCJuOCFCxjHcoIFBgBKF$29#oOKuXOXmLYKTSLdHFalgMOXeLBbDjXlsmkDh$30#htVOboEYaRKxjPKrXnEUQcidGgpKVUuavph$31#tSQKOEVOOlSmnVacAQogKEarj$32#EXDIjnIaxMywHJAxUglwSQTcWBqxSUmhnoC$33#kiilYeEvqYIcquPMypUttHjytfVsCjlskDr$34#GhNXMbcrKYiUsNSIrYUBjXoSk$35#caCMBCoBYsoWpWocEByrmCeZPEwbkiIe$36#vFCRrMupMQvrUFocXjqNbFPQkqBxXSVAYQcReS$37#PVGkBWrexVptotufzXYuBIQbgCppFKerLkxNl$38#IoCPhKWktVsZozLAlELrRxsgfZSLsxhAFsgtolVRGvQ$39#eDNucJOrjOsqlyetKGiYvcnJQzXQ$40#tKZZepuZGHIKuhWrNfzZJvvBoMeDsMMPDYvaChOBhTiV$41#dpwOLCSZPcfXEGkiTnLfxtSGt$42#rvspItrKkZXNmxgvcbCFifRggXMAi$43#GEAscdlvxjwPleYllGVxmP$44#GmlQksxLDBVTUuGQFUOPEjNVBtdUPMdjDvE$45#GxHUUrkGeoZqiyQPaQmyyPvjIUiTJeEJzyh$46#idJxjMCrFoOouzUhQDsmBcaFrKSJMCZrSuNJdyCZsXyeR$47#tXLnpQRdyUFilDCxbvpecEjygvNQbkYAKzzC$48#yhYOOyVUAjujaoXDJceyVJWD$49#NqVwtXjSDilQfZpXCvYdzZsfrNqjmrRexroQQ$50#ACaHLDOAWjNXQJuwcGFISINSSytoDUs$51#YJQsUiiNgWorYCeRIOcgHykmzLoHopNmbJhovElMyy$52#sZVVtmzOybwBbTORfwLueLtppWUEKJrbaQtSajKMZej$53#vXPDwCczBSieVAkCGgyKZ$54#yfzdOUtWxgxTunbVPiBsBadefExqGnQk$55#HFodCihwyfpfYOUdAmVpSNwlIgJJJEdmIyRDJ$56#JGKjspvZsOCmUmliCewPlBYQExrslBOZSFOoVoXZYeTfde$57#ZJUJGRJujZJBtFRneUryksEvgxGrituSNNHoZt$58#CskcgHekJDWNZuYFaHksy$59#bVAshEnorbcGVOshEUsSMyBoJeBLkEYIMcP$60#gBAFawGSMZYlZLzImLStU$61#KWqiSTfBjNLGsmVBCDkdHMMAjkWkuKmSN$62#oezbtfndeohzXXkcePopDHhrAQvLTZEKMTL$63#BcdiLWodeXWEBpoMnYTV$64#ERhAwSgajlXjHnSgteUglsgWXuUXcmfqceGLDoArcxaEZXOoF$65#uhWgquEQzcAiNiammFMKvkqtpKeLIYKU$66#VDCyZTnMWKBXGrVRujWzzoEoFYfGVDbwUJdFESyvleC$67#YZOGsiqtwUITLsySBZvhrBTIBslGt$68#ejlrUBRUfadXxIkhUyuMDlyQPjIMagqaxMbawxjeGtcZQuKZtm$69#UvVRahWrnlszhdFTXJGqJrTuAIfaFRALaaB$70#QysFyGhabarwqwaBVfWnYmJXKZObGBmKZlCIvrxq$71#qYGynigoEnDQmiqcRPYhGOYscBaMgIYiwWIIOfshJJVhlImc$72#jkIKWhzgRxjxiERpXwQfVAmYKgSFSqUBCnXeYdSc$73#sgBfzNkQHsXIMlZDOjwdvtIZRcLIzyljMgBktrJuCdfUgU$74#jNgaWiIaNMHXkoyAfoQeuV$75#yBkxgjivxrAzXktLzswuIRBRdbMhoZytBHRRiknXCQfF$76#dPQjJOlUArPCouGyAojNMerlodmoS$77#vaBZcgWTbQucMPHfoUdadhJGJBVZvyHFUPoTFwSKbTvJIsDgsE$78#GDHwTmfeoXBjyDpUqtNsBuiNjLDTpATOanFOcdfuB$79#LLuwHixeAeSRQubuRqiOvtspSfSrxV$80#USayEfAIuqytLHlnFFxAPvKIZWYwlFEGzcGrXI$81#fRqWawoHRbcWaqUgjadhDBMWkFjfTywecco$82#SBjWiucWwcNwTZpqqHSABYjOwvKrwhSBBhSMI$83#dXXHQWsqmSJsiJyBkqMZMipwHhdcMfB$84#vzKprlOOIQaxwXRwGbjnPps$85#DSVpqBqeRIDyRIkTYMYwvOcrt$86#XXedXMxPBZtWxAbhlRjsjcqMCSEBrraRIKRkvqJnGmXSj$87#trLjhIiPQbtKfrZzfnTQMoCl$88#LmNUNvSgyVCYtNhDuhVs$89#awDkRglUBdfGeNYutuTYZUWvNTwzbTqVq$90#JhMOHFFZmtQREidEltcPkqLDFvHyaJugsJQzDBUJDvxqD$91#ESLzQiWpcarpMlYDBnLlNuXSymGSKbrGGmPssaGgLqYHo$92#nMSHQoEJpCVzdjJsWBHIVx$93#QtgqlLrcUdnsvMTibymKWtQeiavkyLXzUdNOXRBuISLT$94#kwETZzdXxxeFIAHSQsRPPVtWHBRJr$95#qHBKHUiunxmUQdzwQmVOZFJIIus$96#KRvZZgTbyIUJYxwwXlAcrY$97#sqLTETUOFRGoXlxAkUSeOVUCOIbTsjGaiHIPGezbFbJFFBllR$98#xAnfhBPieZBVKsMZhDcchbEjQkRKQplqiOXEEUdMwJM$99#RrVQJZlfNlzfMAjXsigdUXEmcdtuIuKUFaQCDR".split("$");
 // visualiser setup - create web audio api context and canvas
 var sentencesDis = shuffle(sentences).slice(0, 20);
-console.log(sentencesDis);
 
 var audioCtx = new (window.AudioContext || webkitAudioContext)();
 var canvasCtx = canvas.getContext("2d");
+var j = 0;
+
+var sentence = sentencesDis[j];
 
 //main block for doing the audio recording
-
-
 if (navigator.mediaDevices.getUserMedia) {
   console.log('getUserMedia supported.');
 
@@ -49,6 +57,13 @@ if (navigator.mediaDevices.getUserMedia) {
 
   var onSuccess = function (stream) {
     var mediaRecorder = new MediaRecorder(stream);
+
+    var senContainer = document.createElement('article');
+    var sen = document.createElement('sen');
+    sen.textContent = sentence;
+
+    senContainer.appendChild(sen);
+    senClass.appendChild(senContainer);
 
     visualize(stream);
 
@@ -127,7 +142,18 @@ if (navigator.mediaDevices.getUserMedia) {
         }
       }
       download.onclick = function () {
-        saveAs(blob, clipName);
+        if (stop.disabled)
+          saveAs(blob, clipName);
+        j++;
+        if (j < 21)
+          move(j);
+        if (j < 20) {
+          sentence = sentencesDis[j];
+          sen.textContent = sentence;
+        }
+        else {
+          //TODO show Thanks; 
+        }
       };
     }
 
@@ -198,6 +224,7 @@ function visualize(stream) {
 
   }
 }
+
 
 window.onresize = function () {
   canvas.width = mainSection.offsetWidth;

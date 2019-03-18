@@ -90,6 +90,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
     mediaRecorder.onstop = function (e) {
       console.log("data available after MediaRecorder.stop() called.");
+      download.disabled = false;
 
       var clipContainer = document.createElement('article');
       var clipLabel = document.createElement('p');
@@ -144,6 +145,7 @@ if (navigator.mediaDevices.getUserMedia) {
         if (j < 20) {
           sentence = sentencesDis[j].split("#")[1];
           sen.textContent = sentence;
+          download.disabled = true;
         }
         else {
           alert("Thank you for your time!");

@@ -39,7 +39,7 @@ function move(progress) {
 stop.disabled = true;
 // visualiser setup - create web audio api context and canvas
 
-var audioCtx = new (window.AudioContext || webkitAudioContext)();
+var audioCtx =  new (window.AudioContext || webkitAudioContext)();
 var canvasCtx = canvas.getContext("2d");
 
 
@@ -71,7 +71,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
     senContainer.appendChild(sen);
     senClass.appendChild(senContainer);
-    
+
 
     record.onclick = function () {
       mediaRecorder.start();
@@ -179,6 +179,7 @@ if (navigator.mediaDevices.getUserMedia) {
 }
 
 function visualize(stream) {
+  audioCtx.resume();
   var source = audioCtx.createMediaStreamSource(stream);
 
   var analyser = audioCtx.createAnalyser();

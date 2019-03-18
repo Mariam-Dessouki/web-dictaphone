@@ -63,6 +63,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
   var onSuccess = function (stream) {
     var mediaRecorder = new MediaRecorder(stream);
+    visualize(stream);
 
     var senContainer = document.createElement('article');
     var sen = document.createElement('sen');
@@ -70,7 +71,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
     senContainer.appendChild(sen);
     senClass.appendChild(senContainer);
-    visualize(stream);
+    
 
     record.onclick = function () {
       mediaRecorder.start();

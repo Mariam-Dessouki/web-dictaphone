@@ -19,7 +19,7 @@ body {
   flex-direction: column;
 }
 
-h1, h2 {
+h1{
   font-size: 2rem;
   text-align: center;
   font-weight: normal;
@@ -49,12 +49,13 @@ canvas {
 
 button {
   font-size: 1rem;
-  background: #0088cc;
+  background: rgb(0, 102, 153);
   text-align: center;
   color: white;
-  border: none;
+  border: 2px solid rgb(168, 238, 250);
   transition: all 0.2s;
   padding: 0.5rem;
+  border-radius: 8px;
 }
 
 button:hover, button:focus {
@@ -63,14 +64,19 @@ button:hover, button:focus {
 }
 
 button:active {
-  box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.5);
   transform: translateY(2px);
 }
 
+.sen {
+  text-align: center;
+  font-size: 24pt;
+}
 
 /* Make the clips use as much space as possible, and
  * also show a scrollbar when there are too many clips to show
  * in the available space */
+
 .sound-clips {
   flex: 1;
   overflow: auto;
@@ -118,8 +124,8 @@ label {
 }
 
 input[type=checkbox] {
-   position: absolute;
-   top: -100px;
+  position: absolute;
+  top: -100px;
 }
 
 aside {
@@ -135,7 +141,7 @@ aside {
 }
 
 aside p {
-  font-size: 1.2rem;
+  font-size: 20px;
   margin: 0.5rem 0;
 }
 
@@ -144,7 +150,8 @@ aside a {
 }
 
 /* Toggled State of information box */
-input[type=checkbox]:checked ~ aside {
+
+input[type=checkbox]:checked~aside {
   transform: translateX(0);
 }
 
@@ -155,6 +162,7 @@ input[type=checkbox]:checked ~ aside {
 }
 
 /* Adjustments for wider screens */
+
 @media all and (min-width: 800px) {
   /* Don't take all the space as readability is lost when line length
      goes past a certain size */
@@ -165,3 +173,33 @@ input[type=checkbox]:checked ~ aside {
   }
 }
 
+#myProgress {
+  width: 100%;
+  background-color: rgb(208, 208, 251);
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: rgb(0, 102, 153);
+}
+
+.w3-card-4, .w3-hover-shadow:hover {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 6px;
+}
+
+.w3-container:after, .w3-container:before, .w3-panel:after, .w3-panel:before, .w3-row:after, .w3-row:before, .w3-row-padding:after, .w3-row-padding:before, .w3-container, .w3-panel {
+  padding: 0.01em 16px;
+  border-radius: 6px;
+}
+
+.w3-panel {
+  margin-top: 16px;
+  margin-bottom: 16px
+}
+
+.w3-blue, .w3-hover-blue:hover {
+  color: #fff!important;
+  background-color: #2196F3!important
+}

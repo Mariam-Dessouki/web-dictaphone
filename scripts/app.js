@@ -34,6 +34,8 @@ function move(progress) {
 }
 
 
+
+
 // disable stop button while not recording
 
 stop.disabled = true;
@@ -45,6 +47,8 @@ var sentencesDis = shuffle(sentences).slice(0, 20);
 var audioCtx = new (window.AudioContext || webkitAudioContext)();
 var canvasCtx = canvas.getContext("2d");
 var j = 0;
+var progressText = document.getElementById("progressText");
+progressText.textContent = j + "/20";
 
 var sentence = sentencesDis[j];
 
@@ -145,8 +149,11 @@ if (navigator.mediaDevices.getUserMedia) {
         if (stop.disabled)
           saveAs(blob, clipName);
         j++;
-        if (j < 21)
+        if (j < 21) {
           move(j);
+          progressText.textContent = j + "/20";
+        }
+
         if (j < 20) {
           sentence = sentencesDis[j];
           sen.textContent = sentence;

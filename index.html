@@ -4,9 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Title</title>
+  <title>Web Dictaphone</title>
   <link href="styles/app.css" rel="stylesheet" type="text/css">
-  <link href="styles/install-button.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -27,6 +26,7 @@
     </p>
     <br>
     <br>
+
     <div class="w3-card-4 w3-hover-shadow">
       <div class="w3-container w3-hover-shadow">
         <br>
@@ -43,6 +43,7 @@
 
       <footer class="w3-container w3-blue">
         <section class="main-controls">
+          <canvas class="visualizer" height="60px" style=" border-radius: 6px;"></canvas>
           <div id="buttons">
             <button class="record" style="text-align: center;"><img src="app-icons/mic.png">Record</button>
             <button class="stop" style="text-align: center;"><img src="app-icons/stop.png">Stop</button>
@@ -63,18 +64,19 @@
   <label for="toggle">❔</label>
   <input type="checkbox" id="toggle">
   <aside>
-    <h2 style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px; text-align: center">Instructions</h2>
-<br><br><br>
-    <p style="font-family: Georgia, 'Times New Roman', Times, serif;">1- Please take a few seconds to read the phrase first
-      <br><br>2- Click on the record button and start acting the phrase next to the microphone. 
+    <h2 style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 24px; text-align: center">Instructions
+    </h2>
+    <br><br><br>
+    <p style="font-family: Georgia, 'Times New Roman', Times, serif;">1- Please take a few seconds to read the phrase
+      first
+      <br><br>2- Click on the record button and start acting the phrase next to the microphone.
       <br><br>3- After finishing recording press on the stop button.
-      <br><br>4- Click on the Download button to start a new phrase. 
-      <br><br>(Additionally you can listen to the recording before downloading to make sure that it captured the entire phrase.) 
+      <br><br>4- Click on the Download button to start a new phrase.
+      <br><br>(Additionally you can listen to the recording before downloading to make sure that it captured the entire
+      phrase.)
       <br>*Please note that the last recording is the one that gets downloaded*</p>
-
   </aside>
 
-  <script src="scripts/install.js"></script>
   <script src="scripts/mediaDevices-getUserMedia-polyfill.js"></script>
 
   <!-- Below is your custom application script -->

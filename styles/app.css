@@ -79,7 +79,9 @@ button:active {
 
 .sound-clips {
   flex: 1;
-  overflow: auto;
+  width: 75%;
+  margin: 0  auto;
+  
 }
 
 section, article {
@@ -88,6 +90,7 @@ section, article {
 
 .clip {
   padding-bottom: 1rem;
+  
 }
 
 audio {

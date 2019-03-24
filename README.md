@@ -8,13 +8,14 @@ install [FileSaver](https://github.com/eligrey/FileSaver.js/).
 1. Clone repo
 2. open index.html in your Web browser to use the app
 ```
+## OR
 
+You can [play with the live demo](https://mariam-dessouki.github.io/web-dictaphone/).
 
 
 
 A sample MDN app that uses getUserMedia and MediaRecorder API for recording audio snippets, and The Web Audio API for visualizations.
 
-You can [play with the live demo](https://mdn.github.io/web-dictaphone/).
 
 Documentation:
 

@@ -148,7 +148,7 @@ if (navigator.mediaDevices.getUserMedia) {
             */
       download.onclick = function () {
         if (stop.disabled) {
-          saveAs(blob, clipName);
+          //saveAs(blob, clipName);
 
           var blobRef = storageRef.child(clipName+'.wav');
           blobRef.put(blob).then(function(snapshot) {

@@ -2,6 +2,19 @@
 <html lang="en-us">
 
 <head>
+  <script src="scripts/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBKMKqkZUZWXwpfmDDOScPu55Im24VeY_k",
+      authDomain: "speechrecognitionguc.firebaseapp.com",
+      databaseURL: "https://speechrecognitionguc.firebaseio.com",
+      projectId: "speechrecognitionguc",
+      storageBucket: "speechrecognitionguc.appspot.com",
+      messagingSenderId: "471681013368"
+    };
+    firebase.initializeApp(config);
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Web Dictaphone</title>
@@ -47,7 +60,7 @@
           <div id="buttons">
             <button class="record" style="text-align: center;"><img src="app-icons/mic.png">Record</button>
             <button class="stop" style="text-align: center;"><img src="app-icons/stop.png">Stop</button>
-            <button class="download" style="text-align: center;"><img src="app-icons/download.png">Download</button>
+            <button class="download" style="text-align: center;"><img src="app-icons/upload.png">Upload</button>
           </div>
         </section>
       </footer>

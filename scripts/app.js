@@ -7,6 +7,10 @@ var senClass = document.querySelector('.sen');
 var canvas = document.querySelector('.visualizer');
 var mainSection = document.querySelector('.main-controls');
 
+// Create a root reference
+var storageRef = firebase.storage().ref();
+
+
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -71,7 +75,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
     senContainer.appendChild(sen);
     senClass.appendChild(senContainer);
-    
+
 
     record.onclick = function () {
       mediaRecorder.start();
@@ -143,8 +147,14 @@ if (navigator.mediaDevices.getUserMedia) {
             }
             */
       download.onclick = function () {
-        if (stop.disabled)
+        if (stop.disabled) {
           saveAs(blob, clipName);
+
+          var blobRef = storageRef.child(clipName+'.wav');
+          blobRef.put(blob).then(function(snapshot) {
+            console.log('Uploaded a blob or file!');
+          });
+        }
         j++;
         if (j < 21) {
           move(j);

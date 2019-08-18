@@ -71,6 +71,7 @@ button:active {
 .sen {
   text-align: center;
   font-size: 24pt;
+  filter: blur(4px);
 }
 
 /* Make the clips use as much space as possible, and
